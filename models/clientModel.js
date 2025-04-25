@@ -1,9 +1,8 @@
-// models/Client.js
 const mongoose = require("mongoose");
 const validator = require("validator");
 
 const clientSchema = new mongoose.Schema({
-  name: { type: String, required: [true, "Please name is required"] },
+  name: { type: String, required: [true, "Please provide a name"] },
   gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
   date_of_birth: { type: Date, required: [true, "input date of birth"] },
   national_id: {
