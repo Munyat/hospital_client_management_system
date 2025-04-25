@@ -27,11 +27,14 @@ const getAllClients = asyncWrapper(async (req, res, next) => {
 
 const createClient = asyncWrapper(async (req, res, next) => {
   const client = await Client.create(req.body);
+
   res.status(201).json({ client });
 });
 
 const getClient = asyncWrapper(async (req, res, next) => {
-  const client = await Client.findById(req.params.id);
+  const client = await Client.findById(req.params.id).populate({
+    path: "enrollments",
+  });
 
   if (!client) {
     return next(createCustomError(`No client with id: ${req.params.id}`, 404));
