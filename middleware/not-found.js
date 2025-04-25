@@ -1,4 +1,6 @@
-const notFound = (req, res) => {
-  res.status(404).send("Route Not Found");
+const { CustomApiError } = require("../error/custom-error");
+
+const notFound = (req, res, next) => {
+  next(new CustomApiError(`Can't find ${req.originalUrl} on this server`, 404));
 };
 module.exports = notFound;
