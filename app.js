@@ -3,6 +3,8 @@ const express = require("express");
 const morgan = require("morgan");
 const connectDB = require("./db/connect");
 require("dotenv").config();
+const notFound = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 const app = express();
 
@@ -10,6 +12,9 @@ app.use(morgan("tiny"));
 app.use(express.json());
 
 app.get("/", (req, res) => res.send("Health Care Management System API"));
+
+// app.use(errorHandlerMiddleware);
+// app.use("*", notFound);
 
 const PORT = process.env.PORT || 3005;
 
