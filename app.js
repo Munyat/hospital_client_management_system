@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const connectDB = require("./db/connect");
 require("dotenv").config();
+const user = require("./routes/userRoutes");
 const clients = require("./routes/clientRoutes");
 const programs = require("./routes/programRoutes");
 const enrollment = require("./routes/enrollmentRoutes");
@@ -14,6 +15,7 @@ const app = express();
 app.use(morgan("tiny"));
 app.use(express.json());
 
+app.use("/api/v1/users", user);
 app.use("/api/v1/clients", clients);
 app.use("/api/v1/programs", programs);
 app.use("/api/v1/enroll", enrollment);

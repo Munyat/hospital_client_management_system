@@ -8,7 +8,28 @@ const {
   deleteClient,
 } = require("../controllers/clientController");
 
-router.route("/").get(getAllClients).post(createClient);
-router.route("/:id").get(getClient).patch(updateClient).delete(deleteClient);
+const authController = require("../controllers/authController");
+
+router
+  .route("/")
+  .get(
+    authController.protect,
+    authController.restrictTo("doctor"),
+    getAllClients
+  )
+  .post(createClient);
+router
+  .route("/:id")
+  .get(getClient)
+  .patch(
+    authController.protect,
+    authController.restrictTo("doctor"),
+    updateClient
+  )
+  .delete(
+    authController.protect,
+    authController.restrictTo("doctor"),
+    deleteClient
+  );
 
 module.exports = router;

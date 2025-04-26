@@ -5,6 +5,15 @@ const {
   createEnrollment,
 } = require("../controllers/enrollmentController");
 
-router.route("/").get(getAllEnrollments).post(createEnrollment);
+const authController = require("../controllers/authController");
+
+router
+  .route("/")
+  .get(getAllEnrollments)
+  .post(
+    authController.protect,
+    authController.restrictTo("doctor"),
+    createEnrollment
+  );
 
 module.exports = router;
