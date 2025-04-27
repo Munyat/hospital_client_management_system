@@ -23,6 +23,10 @@ app.use("/api/v1/clients", clients);
 app.use("/api/v1/programs", programs);
 app.use("/api/v1/enroll", enrollment);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Hospital Management System API!");
+});
+
 app.all(/(.*)/, notFound);
 
 app.use(errorHandlerMiddleware);
