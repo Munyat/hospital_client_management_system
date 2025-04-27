@@ -1,0 +1,303 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Hospital Management System API",
+    "description": "API documentation for the Hospital Management System",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3001",
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter 'Bearer <token>'"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "paths": {
+    "/clients": {
+      "get": {
+        "summary": "Get all clients",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "List of clients"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a client",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "client",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "gender": { "type": "string" },
+                "email": { "type": "string" },
+                "date_of_birth": { "type": "string" },
+                "national_id": { "type": "string" },
+                "phone": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Client created"
+          }
+        }
+      }
+    },
+    "/clients/{id}": {
+      "get": {
+        "summary": "Get a single client",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client data"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a client",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "client",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a client",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Client deleted"
+          }
+        }
+      }
+    },
+    "/programs": {
+      "get": {
+        "summary": "Get all programs",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "List of programs"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a program",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "program",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "description": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Program created"
+          }
+        }
+      }
+    },
+    "/programs/{id}": {
+      "get": {
+        "summary": "Get a single program",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Program data"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a program",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "program",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Program updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a program",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Program deleted"
+          }
+        }
+      }
+    },
+    "/enroll": {
+      "get": {
+        "summary": "Get all enrollments",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "List of enrollments"
+          }
+        }
+      },
+      "post": {
+        "summary": "Enroll a client to a program",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "enrollment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "client": { "type": "string" },
+                "program": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Client enrolled"
+          }
+        }
+      }
+    },
+    "/users/signup": {
+      "post": {
+        "summary": "User signup",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fullName": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User registered"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "User login",
+        "parameters": [
+          {
+            "name": "credentials",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged in"
+          }
+        }
+      }
+    }
+  }
+}

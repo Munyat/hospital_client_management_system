@@ -9,9 +9,12 @@ const programs = require("./routes/programRoutes");
 const enrollment = require("./routes/enrollmentRoutes");
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const app = express();
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(morgan("tiny"));
 app.use(express.json());
 
@@ -28,8 +31,14 @@ const PORT = process.env.PORT || 3005;
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
-    app.listen(PORT, console.log(`Server is listening port ${PORT}...`));
-  } catch (error) {}
+    await connectDB(
+      "mongodb+srv://briankipkiruimunyat:healthcare@cluster0.g3r77i1.mongodb.net/?retryWrites=true&w=majority&appName=healthcaremanagement"
+    );
+    app.listen(PORT, () =>
+      console.log(`Server is listening on port ${PORT}...`)
+    );
+  } catch (error) {
+    console.error("Failed to start server:", error);
+  }
 };
 start();
