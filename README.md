@@ -1,135 +1,42 @@
-Of course!  
-Here's a polished `README.md` based on everything you shared about the **Hospital Management System** API:
-
----
-
 # 🏥 Hospital Management System API
 
-This is a **RESTful API** for managing **clients**, **programs**, **user authentication**, and **client enrollment** into healthcare programs.
+This is a RESTful API for managing users, clients, programs, and enrollments in a hospital setting.  
+It uses **Node.js**, **Express**, **MongoDB**, and **Swagger** for API documentation.
 
-## 🛠 Tech Stack
+## 🚀 Features
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT (for Authentication)
+- User authentication (Sign up and Login)
+- Client management (Create, Read, Update, Delete)
+- Program management (Create, Read, Update, Delete)
+- Enroll clients into programs
+- API documentation with Swagger (`/api-docs` endpoint)
+- Centralized error handling
 
 ---
 
-## 📂 Project Structure (Endpoints)
+## 📄 Important Note
 
-### 🧑‍🤝‍🧑 Clients
+🔴 **Database Connection:**  
+For the purpose of an interview process, the MongoDB Atlas database is exposed publicly inside `app.js`.  
+**Please feel free to connect to your own local or private database for security reasons**.
 
-| Method | Endpoint                      | Description                       |
-| :----: | :---------------------------- | :-------------------------------- |
-|  GET   | `/api/v1/clients`             | Fetch **all clients**             |
-|  GET   | `/api/v1/clients/:id`         | Fetch a **single client** by ID   |
-|  POST  | `/api/v1/clients`             | **Create** a new client           |
-| PATCH  | `/api/v1/clients/:id`         | **Update** an existing client     |
-| DELETE | `/api/v1/clients/:id`         | **Delete** a client               |
-|  GET   | `/api/v1/clients?name=<name>` | **Filter/search** clients by name |
-
-Example `POST /clients` body:
-
-```json
-{
-  "name": "Jane",
-  "gender": "Female",
-  "email": "jane@gmail.com",
-  "date_of_birth": "1988-03-22",
-  "national_id": "9876543",
-  "phone": "+254700000071"
-}
+```javascript
+// Note: Database exposed temporarily for interview process.
+// Feel free to connect to your own local MongoDB for testing and production use.
+await connectDB(
+  "mongodb+srv://briankipkiruimunyat:healthcare@cluster0.g3r77i1.mongodb.net/?retryWrites=true&w=majority&appName=healthcaremanagement"
+);
 ```
 
 ---
 
-### 📚 Programs
-
-| Method | Endpoint               | Description                |
-| :----: | :--------------------- | :------------------------- |
-|  GET   | `/api/v1/programs`     | Fetch **all programs**     |
-|  GET   | `/api/v1/programs/:id` | Fetch a **single program** |
-|  POST  | `/api/v1/programs`     | **Create** a program       |
-| PATCH  | `/api/v1/programs/:id` | **Update** a program       |
-| DELETE | `/api/v1/programs/:id` | **Delete** a program       |
-
-Example `POST /programs` body:
-
-```json
-{
-  "name": "Tuberculosis (TB) Control",
-  "description": "A program aimed at preventing, diagnosing, and treating tuberculosis. Includes DOTS (Directly Observed Treatment, Short-course) for effective management."
-}
-```
-
----
-
-### 📝 Enrollment
-
-| Method | Endpoint         | Description                        |
-| :----: | :--------------- | :--------------------------------- |
-|  POST  | `/api/v1/enroll` | **Enroll** a client into a program |
-
-Example `POST /enroll` body:
-
-```json
-{
-  "client": "client_id_here",
-  "program": "program_id_here"
-}
-```
-
----
-
-### 👤 Users (Authentication)
-
-| Method | Endpoint               | Description                          |
-| :----: | :--------------------- | :----------------------------------- |
-|  POST  | `/api/v1/users/signup` | **Register** a new user              |
-|  POST  | `/api/v1/users/login`  | **Login** user and get **JWT token** |
-
-Example `POST /users/signup` body:
-
-```json
-{
-  "fullName": "Brian Kipkirui",
-  "email": "brian@example.com",
-  "password": "StrongPassword123"
-}
-```
-
-Example `POST /users/login` body:
-
-```json
-{
-  "email": "brannKipkiru@example.com",
-  "password": "StrongPassword123"
-}
-```
-
----
-
-## 🔒 Authentication
-
-All endpoints (except `signup` and `login`) are protected with **Bearer Token** authentication.
-
-Every request must include the `Authorization` header:
-
-```bash
-Authorization: Bearer <token>
-```
-
----
-
-## 🚀 How to Run Locally
+## 🛠 Installation
 
 1. Clone the repository:
 
 ```bash
-git clone <your-repository-url>
-cd hospital-management-system
+git clone <repository-url>
+cd health_care_management_system
 ```
 
 2. Install dependencies:
@@ -138,43 +45,115 @@ cd hospital-management-system
 npm install
 ```
 
-3. Set environment variables (`.env`):
+3. Create a `.env` file in the root directory and add:
 
-```env
-PORT=3001
-MONGO_URI=<your-mongodb-connection-string>
-JWT_SECRET=<your-jwt-secret>
-JWT_EXPIRES_IN=7d
+```bash
+PORT=3005
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+JWT_LIFETIME=1d
 ```
 
-4. Start the server:
+_(Remember: you can keep using the provided Atlas URI for testing.)_
+
+4. Run the server:
 
 ```bash
 npm start
 ```
 
-Server will be running at: `http://localhost:3001`
+---
+
+## 📚 API Documentation
+
+Swagger UI is available at:
+
+```
+http://localhost:3005/api-docs
+```
+
+It documents all endpoints, request bodies, authentication methods, and responses.
 
 ---
 
-## 📬 Postman Collection
+## 🔐 Authentication
 
-You can import the Postman collection to easily test all the endpoints.  
-(You can create and export it later if you want.)
+- All protected routes use **Bearer Token** authentication.
+- Obtain a token by signing up or logging in at `/api/v1/users/signup` or `/api/v1/users/login`.
+
+---
+
+## 📬 API Endpoints Overview
+
+### User Endpoints
+
+| Method | Endpoint               | Description       |
+| :----: | :--------------------- | :---------------- |
+|  POST  | `/api/v1/users/signup` | Register new user |
+|  POST  | `/api/v1/users/login`  | Login user        |
 
 ---
 
-## 📢 Notes
+### Client Endpoints
 
-- Make sure MongoDB is running before starting the server.
-- Always send a valid **JWT token** when accessing protected routes.
-- Data validation and error handling have been added for robustness.
+| Method | Endpoint              | Description         |
+| :----: | :-------------------- | :------------------ |
+|  GET   | `/api/v1/clients`     | Get all clients     |
+|  GET   | `/api/v1/clients/:id` | Get client by ID    |
+|  POST  | `/api/v1/clients`     | Create a new client |
+| PATCH  | `/api/v1/clients/:id` | Update a client     |
+| DELETE | `/api/v1/clients/:id` | Delete a client     |
 
 ---
+
+### Program Endpoints
+
+| Method | Endpoint               | Description          |
+| :----: | :--------------------- | :------------------- |
+|  GET   | `/api/v1/programs`     | Get all programs     |
+|  GET   | `/api/v1/programs/:id` | Get program by ID    |
+|  POST  | `/api/v1/programs`     | Create a new program |
+| PATCH  | `/api/v1/programs/:id` | Update a program     |
+| DELETE | `/api/v1/programs/:id` | Delete a program     |
+
+---
+
+### Enrollment Endpoints
+
+| Method | Endpoint         | Description                  |
+| :----: | :--------------- | :--------------------------- |
+|  POST  | `/api/v1/enroll` | Enroll a client in a program |
+|  GET   | `/api/v1/enroll` | Get all enrollments          |
+
+---
+
+## 📦 Technologies Used
+
+- Node.js
+- Express.js
+- MongoDB Atlas (Mongoose)
+- Swagger (API Docs)
+- JWT (Authentication)
+- Morgan (Logger)
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome!  
+For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 📜 License
+
+This project is licensed for educational and interview purposes.  
+Feel free to fork and adapt it!
+
+---
+
+# ✨
 
 # ❤️ Thank you for using Hospital Management System API!
 
 ---
-
-Would you also like me to generate a **Postman Collection JSON** for you so you can just import it directly? 🚀  
-(only if you want!)
