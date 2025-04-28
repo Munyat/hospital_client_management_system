@@ -5,7 +5,7 @@
     "description": "API documentation for the Hospital Management System",
     "version": "1.0.0"
   },
-  "host": "localhost:3001",
+  "host": "localhost:3005",
   "basePath": "/api/v1",
   "schemes": ["http"],
   "securityDefinitions": {
@@ -13,7 +13,7 @@
       "type": "apiKey",
       "name": "Authorization",
       "in": "header",
-      "description": "Enter 'Bearer <token>'"
+      "description": "Bearer token to authorize requests."
     }
   },
   "security": [
