@@ -1,7 +1,9 @@
 # 🏥 Hospital Management System API
 
 This is a RESTful API for managing users, clients, programs, and enrollments in a hospital setting.  
-It uses **Node.js**, **Express**, **MongoDB**, and **Swagger** for API documentation.
+It uses Node.js, Express, MongoDB, and Swagger for API documentation.
+
+---
 
 ## 🚀 Features
 
@@ -14,11 +16,18 @@ It uses **Node.js**, **Express**, **MongoDB**, and **Swagger** for API documenta
 
 ---
 
+## 🌐 Deployed Website
+
+The API is live and accessible here:  
+👉 [Hospital Management System API Documentation](https://hospital-client-management-system.onrender.com/api-docs)
+
+---
+
 ## 📄 Important Note
 
 🔴 **Database Connection:**  
 For the purpose of an interview process, the MongoDB Atlas database is exposed publicly inside `app.js`.  
-**Please feel free to connect to your own local or private database for security reasons**.
+Please feel free to connect to your own local or private database for security reasons.
 
 ```javascript
 // Note: Database exposed temporarily for interview process.
@@ -35,8 +44,8 @@ await connectDB(
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd health_care_management_system
+git clone https://github.com/Munyat/hospital_client_management_system.git
+cd hospital_client_management_system
 ```
 
 2. Install dependencies:
@@ -47,14 +56,14 @@ npm install
 
 3. Create a `.env` file in the root directory and add:
 
-```bash
+```
 PORT=3005
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 JWT_LIFETIME=1d
 ```
 
-_(Remember: you can keep using the provided Atlas URI for testing.)_
+_(You can continue using the provided Atlas URI for testing.)_
 
 4. Run the server:
 
@@ -66,11 +75,8 @@ npm start
 
 ## 📚 API Documentation
 
-Swagger UI is available at:
-
-```
-http://localhost:3005/api-docs
-```
+- Local: `http://localhost:3005/api-docs`
+- Live: [`https://hospital-client-management-system.onrender.com/api-docs`](https://hospital-client-management-system.onrender.com/api-docs)
 
 It documents all endpoints, request bodies, authentication methods, and responses.
 
@@ -78,8 +84,11 @@ It documents all endpoints, request bodies, authentication methods, and response
 
 ## 🔐 Authentication
 
-- All protected routes use **Bearer Token** authentication.
-- Obtain a token by signing up or logging in at `/api/v1/users/signup` or `/api/v1/users/login`.
+All protected routes use **Bearer Token** authentication.  
+Obtain a token by signing up or logging in at:
+
+- `/api/v1/users/signup`
+- `/api/v1/users/login`
 
 ---
 
@@ -87,43 +96,37 @@ It documents all endpoints, request bodies, authentication methods, and response
 
 ### User Endpoints
 
-| Method | Endpoint               | Description       |
-| :----: | :--------------------- | :---------------- |
-|  POST  | `/api/v1/users/signup` | Register new user |
-|  POST  | `/api/v1/users/login`  | Login user        |
-
----
+| Method |       Endpoint       | Description       |
+| :----: | :------------------: | :---------------- |
+|  POST  | /api/v1/users/signup | Register new user |
+|  POST  | /api/v1/users/login  | Login user        |
 
 ### Client Endpoints
 
-| Method | Endpoint              | Description         |
-| :----: | :-------------------- | :------------------ |
-|  GET   | `/api/v1/clients`     | Get all clients     |
-|  GET   | `/api/v1/clients/:id` | Get client by ID    |
-|  POST  | `/api/v1/clients`     | Create a new client |
-| PATCH  | `/api/v1/clients/:id` | Update a client     |
-| DELETE | `/api/v1/clients/:id` | Delete a client     |
-
----
+| Method |      Endpoint       | Description         |
+| :----: | :-----------------: | :------------------ |
+|  GET   |   /api/v1/clients   | Get all clients     |
+|  GET   | /api/v1/clients/:id | Get client by ID    |
+|  POST  |   /api/v1/clients   | Create a new client |
+| PATCH  | /api/v1/clients/:id | Update a client     |
+| DELETE | /api/v1/clients/:id | Delete a client     |
 
 ### Program Endpoints
 
-| Method | Endpoint               | Description          |
-| :----: | :--------------------- | :------------------- |
-|  GET   | `/api/v1/programs`     | Get all programs     |
-|  GET   | `/api/v1/programs/:id` | Get program by ID    |
-|  POST  | `/api/v1/programs`     | Create a new program |
-| PATCH  | `/api/v1/programs/:id` | Update a program     |
-| DELETE | `/api/v1/programs/:id` | Delete a program     |
-
----
+| Method |       Endpoint       | Description          |
+| :----: | :------------------: | :------------------- |
+|  GET   |   /api/v1/programs   | Get all programs     |
+|  GET   | /api/v1/programs/:id | Get program by ID    |
+|  POST  |   /api/v1/programs   | Create a new program |
+| PATCH  | /api/v1/programs/:id | Update a program     |
+| DELETE | /api/v1/programs/:id | Delete a program     |
 
 ### Enrollment Endpoints
 
-| Method | Endpoint         | Description                  |
-| :----: | :--------------- | :--------------------------- |
-|  POST  | `/api/v1/enroll` | Enroll a client in a program |
-|  GET   | `/api/v1/enroll` | Get all enrollments          |
+| Method |    Endpoint    | Description                  |
+| :----: | :------------: | :--------------------------- |
+|  POST  | /api/v1/enroll | Enroll a client in a program |
+|  GET   | /api/v1/enroll | Get all enrollments          |
 
 ---
 
@@ -152,8 +155,6 @@ Feel free to fork and adapt it!
 
 ---
 
-# ✨
+## ✨
 
-# ❤️ Thank you for using Hospital Management System API!
-
----
+❤️ Thank you for using the Hospital Management System API!
