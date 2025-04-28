@@ -35,7 +35,7 @@ await connectDB(
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone
 cd health_care_management_system
 ```
 
